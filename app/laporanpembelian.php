@@ -19,4 +19,6 @@ class laporanpembelian extends Model implements
 
   protected $table = 'laporanpembelian';
   protected $guarded = ['idlaporanpembelian'];
+  protected $dates = ['created_at', 'updated_at', 'deleted_at']; } 
+   
 }

@@ -11,7 +11,7 @@
 
 	<p>ID Pembeli
 	<select name="idpembeli">
-		<option> --Pilih ID Pembeli-- </option>
+		<option> --Pilih Nama Pembeli-- </option>
 		@foreach($pembeli as $pembeli)
 			<option value="{{ $pembeli->idpembeli }}"> {{ $pembeli->nama }} </option>
 		@endforeach
@@ -20,7 +20,7 @@
 
 	<p>ID Barang
 	<select name="idbarang">
-		<option> --Pilih ID Barang-- </option>
+		<option> --Pilih Type Barang-- </option>
 		@foreach($barang as $barang)
 			<option value="{{ $barang->idbarang }}"> {{ $barang->type }} </option>
 		@endforeach

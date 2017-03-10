@@ -13,7 +13,6 @@ class laporanpembelianController extends Controller
 {
     public function index()
     {
-        //$date->whereDate('created_at', '=', Carbon::today()->toDateString());
          $laporanpembelians = DB::table('laporanpembelian')
             ->join('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
             ->join('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
@@ -25,6 +24,8 @@ class laporanpembelianController extends Controller
 
     function indexharian()
     {
+        //$date->whereDate('created_at', '=', Carbon::today()->toDateString());
+
         $laporanpembelians = DB::table('laporanpembelian')
             ->join('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
             ->join('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
@@ -41,6 +42,13 @@ class laporanpembelianController extends Controller
         }
         return view('laporanpembelian.indexharian')
                 ->with('laporanpembelians',$laporanpembelian);
+    }
+
+    function listharian($laporanpembelian)
+    {
+        $laporanpembelian = App\laporanpembelian::find(1); return $laporanpembelian->created_at->getTimestamp(); 
+        
+        return redirect('laporanpembelian');
     }
 
 }

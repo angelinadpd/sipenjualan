@@ -13,8 +13,8 @@
     		<th>ID Penjualan</th>
     		<th>Nota</th>
     		<th>Tanggal</th>
-    		<th>ID Pembeli</th>
-        <th>ID Barang</th>
+    		<th>Nama Pembeli</th>
+        <th>Type Barang</th>
         <th>Qty</th>
         <th>Amount</th>
         <th>Total</th>

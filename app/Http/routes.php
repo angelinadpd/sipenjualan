@@ -21,8 +21,9 @@ Route::get('/default', function () {
 //LAPORAN
 Route::get('/laporanpembelian', function () {
   return view('laporanpembelian.index');
-Route::get('/indexharian', 'laporanpembelianController@indexharian');
 });
+
+
 
 Route::group(['middleware' => ['web']],function () {
 	Route::resource('barang', 'barangController');
@@ -44,7 +45,8 @@ Route::group(['middleware' => ['web']],function () {
 	Route::get('penjualan', ['as' => 'penjualan', 'uses' => 'penjualanController@index']);
 
 	Route::resource('laporanpembelian', 'laporanpembelianController');
-	Route::get('laporanpembelian', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@index']);
+	Route::get('/indexharian', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@indexharian']);
+	Route::get('/listharian/{laporanpembelian}', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@listharian']);
 	
 });  
 Route::auth();
