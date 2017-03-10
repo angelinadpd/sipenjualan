@@ -26,12 +26,13 @@
 	<input type="text" name="qty" value="">
 	{{ ($errors->has('qty')) ? $errors->first('qty') : '' }}</p><br>
 
-	<p>Total
-	<input type="text" name="total" value="">
-	{{ ($errors->has('total')) ? $errors->first('total') : '' }}</p><br>
-
 	<p>Status
-	<input type="text" name="status" value="">
+		<select name="status">
+		<option> --Pilih status-- </option>
+		<option> Pesan </option>
+		<option> Masuk </option>
+		<option> Batal </option>
+	</select>
 	{{ ($errors->has('status')) ? $errors->first('status') : '' }}</p><br>
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">

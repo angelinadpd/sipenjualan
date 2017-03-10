@@ -22,11 +22,14 @@
 	<p>Qty
 	<input type="text" name="qty" value="{{ $realisasi->qty }}"></p><br>
 
-	<p>Total
-	<input type="text" name="total" value="{{ $realisasi->total }}"></p><br>
-
 	<p>Status
-	<input type="text" name="status" value="{{ $realisasi->status }}"></p><br>
+	<select name="status" value="{{ $realisasi->status }}">
+		<option> --Pilih status-- </option>
+		<option> Pesan </option>
+		<option> Masuk </option>
+		<option> Batal </option>
+	</select>
+	</p>
 
 	<input type="hidden" name="_method" value="put">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -28,10 +28,6 @@ class pesanbarangController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-
-            ]);
-
         $pesanbarang = new pesanbarang;
         $pesanbarang->kode = $request->kode;
         $pesanbarang->noso = str_random(8);
@@ -82,8 +78,8 @@ class pesanbarangController extends Controller
          $pesanbarang = pesanbarang::where('idpesan', '=',$idpesan);
 
         $paramsUpdate = [
-        'kode'   => $request->kode,
-        'tgl'    => $request->tgl,
+        'kode'     => $request->kode,
+        'tgl'      => $request->tgl,
         'idbarang' => $request->idbarang,
         'status'   => $request->status,
 

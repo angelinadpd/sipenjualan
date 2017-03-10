@@ -29,9 +29,6 @@
 	<p>Amount
 	<input type="text" name="amount" value="{{ $penjualan->amount }}"> </p><br>
 
-	<p>Total
-	<input type="text" name="total" value="{{ $penjualan->total }}"> </p><br>
-
 	<input type="hidden" name="_method" value="put">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<button class="btn btn-success" type="submit" name="submit">Save</button>

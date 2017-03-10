@@ -30,9 +30,9 @@ class penjualanController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-
-            ]);
+        $qty = $request->qty;
+        $amount = $request->amount;
+        $total = $amount*$qty;
 
         $penjualan = new penjualan;
         $penjualan->nota = str_random(8);
@@ -41,7 +41,7 @@ class penjualanController extends Controller
         $penjualan->idbarang = $request->idbarang;
         $penjualan->qty = $request->qty;
         $penjualan->amount = $request->amount;
-        $penjualan->total = $request->total;
+        $penjualan->total = $total;
         $penjualan->save();
 
         return redirect('penjualan')->with('message','Simpan data penjualan sukses !');
@@ -79,13 +79,17 @@ class penjualanController extends Controller
 
     public function update(Request $request, $idpenjualan)
     {
+        $qty = $request->qty;
+        $amount = $request->amount;
+        $total = $qty*$amount;
+
          $this->validate($request, [
             'tgl'         => 'required',
             'idpembeli'   => 'required',
             'idbarang'    => 'required',
             'qty'         => 'required',
             'amount'      => 'required',
-            'total'       => 'required',
+            //'total'       => 'required',
             ]);
 
        $penjualan = penjualan::where('idpenjualan', '=',$idpenjualan);
@@ -96,7 +100,7 @@ class penjualanController extends Controller
         'idbarang'  => $request->idbarang,
         'qty'       => $request->qty,
         'amount'    => $request->amount,
-        'total'     => $request->total,
+        'total'     => $total,
     ];
         $penjualan->update($paramsUpdate);
 

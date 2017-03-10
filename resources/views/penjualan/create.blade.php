@@ -35,10 +35,6 @@
 	<input type="text" name="amount" value="">
 	{{ ($errors->has('amount')) ? $errors->first('amount') : '' }}</p><br>
 
-	<p>Total
-	<input type="text" name="total" value="">
-	{{ ($errors->has('total')) ? $errors->first('total') : '' }}</p><br>
-
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<button class="btn btn-success" type="submit" name="submit">Post</button>
     <button class="btn btn-success" type="reset" name="reset">Reset</button>

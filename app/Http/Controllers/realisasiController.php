@@ -27,9 +27,10 @@ class realisasiController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-
-            ]);
+        $price = $request->price;
+        $qty = $request->qty;
+        $total = $price*$qty;
+        
 
         $realisasi = new realisasi;
         $realisasi->nodo = str_random(8);
@@ -37,7 +38,7 @@ class realisasiController extends Controller
         $realisasi->tgl = $request->tgl;
         $realisasi->price = $request->price;
         $realisasi->qty = $request->qty;
-        $realisasi->total = $price*$qty;
+        $realisasi->total = $total;
         $realisasi->status = $request->status;
         $realisasi->save();
 
@@ -73,12 +74,16 @@ class realisasiController extends Controller
 
     public function update(Request $request, $idrealisasi)
     {
+        $price = $request->price;
+        $qty = $request->qty;
+        $total = $price*$qty;
+
          $this->validate($request, [
             'idpesan'    => 'required',
             'tgl'        => 'required',
             'price'      => 'required',
             'qty'        => 'required',
-            'total'      => 'required',
+            //'total'      => 'required',
             'status' => 'required',
             ]);
 
@@ -89,7 +94,7 @@ class realisasiController extends Controller
         'tgl'       => $request->tgl,
         'price'     => $request->price,
         'qty'       => $request->qty,
-        'total'     => $request->total,
+        'total'     => $total,
         'status'=> $request->status,
     ];
         $realisasi->update($paramsUpdate);

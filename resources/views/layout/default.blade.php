@@ -71,11 +71,10 @@
                     </ul>
                 </li>
 
-                <!--NAV PROFILE ADMIN-->
+                <!--NAV PROFILE ADMIN-->                        
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
-                    <li class="dropdown">
-                        <ul class="dropdown-menu alert-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"> {{ Auth::user()->name }} </i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
                         <li class="divider"></li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -118,19 +117,11 @@
                     </li>
 
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#laporan"><i class="fa fa-edit"></i> Laporan<i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#laporan"><i class="fa fa-book"></i> Laporan<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="laporan" class="collapse">
-                                <li><a href="#">Harian</a></li>
-                                <li><a href="#">Mingguan</a></li>
-                                <li><a href="#">Bulanan</a></li>
-                                <li><a href="#">Tahunan</a></li>
+                                <li><a href="{{ url('/laporanpembelian') }}">Laporan Pembelian</a></li>
+                                <li><a href="{{ url('/laporanpenjualan') }}">Laporan Penjualan</a></li>                             
                         </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li>
                 </ul>
             </div>

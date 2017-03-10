@@ -20,7 +20,13 @@
 	</select>
 
 	<p>Status
-	<input type="text" name="status" value="{{ $pesanbarang->status }}"></p><br>
+	<select name="status" value="{{ $pesanbarang->status }}">
+		<option> --Pilih status-- </option>
+		<option> Pesan </option>
+		<option> Masuk </option>
+		<option> Batal </option>
+	</select>
+	</p>
 
 	<input type="hidden" name="_method" value="put">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">

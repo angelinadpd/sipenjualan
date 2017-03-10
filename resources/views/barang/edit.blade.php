@@ -13,12 +13,6 @@
 	<p>Price
 	<input type="text" name="price" value="{{ $barang->price }}"></p><br>
 
-	<p>DPP
-	<input type="text" name="dpp" value="{{ $barang->dpp }}"></p><br>
-
-	<p>PPN
-	<input type="text" name="ppn" value="{{ $barang->ppn }}"></p><br>
-
 	<p>Stok
 	<input type="text" name="stok" value="{{ $barang->stok }}"></p><br><br>
 

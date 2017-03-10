@@ -15,7 +15,7 @@
     		<th>Kode pesanbarang</th>
     		<th>No. SO</th>
     		<th>Tanggal</th>
-        <th>ID Barang</th>
+        <th>Nama Barang</th>
         <th>Status</th>
         <th>Edit</th>
         <th>Hapus</th>

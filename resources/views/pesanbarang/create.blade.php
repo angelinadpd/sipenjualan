@@ -13,7 +13,7 @@
 	<input type="date" name="tgl" value="">
 	{{ ($errors->has('tgl')) ? $errors->first('tgl') : '' }}</p><br>
 
-	<p>ID Barang
+	<p>Nama Barang
 	<select name="idbarang">
 		<option> --Pilih ID Barang-- </option>
 		@foreach($barang as $barang)
@@ -22,9 +22,13 @@
 	</select>
     {{ ($errors->has('idbarang')) ? $errors->first('idbarang') : '' }}</p><br>
 
-
 	<p>Status
-	<input type="text" name="status" value="">
+	<select name="status">
+		<option> --Pilih status-- </option>
+		<option> Pesan </option>
+		<option> Masuk </option>
+		<option> Batal </option>
+	</select>
 	{{ ($errors->has('status')) ? $errors->first('status') : '' }}</p><br>
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">

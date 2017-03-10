@@ -14,6 +14,15 @@
 Route::get('/', function () {
     return view('pages.index');
 });
+Route::get('/default', function () {
+    return view('layout.default');
+});
+
+//LAPORAN
+Route::get('/laporanpembelian', function () {
+  return view('laporanpembelian.index');
+Route::get('/indexharian', 'laporanpembelianController@indexharian');
+});
 
 Route::group(['middleware' => ['web']],function () {
 	Route::resource('barang', 'barangController');
@@ -33,8 +42,11 @@ Route::group(['middleware' => ['web']],function () {
 
 	Route::resource('penjualan', 'penjualanController');
 	Route::get('penjualan', ['as' => 'penjualan', 'uses' => 'penjualanController@index']);
-});  
 
+	Route::resource('laporanpembelian', 'laporanpembelianController');
+	Route::get('laporanpembelian', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@index']);
+	
+});  
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

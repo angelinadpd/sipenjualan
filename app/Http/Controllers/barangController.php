@@ -17,37 +17,26 @@ class barangController extends Controller
     public function create()
     {
         return view('barang.create');
+
     }
     public function store(Request $request)
     {
-        $this->validate($request, [
-         /*'type' => 'required',
-         'nama' => 'required',
-         'price'=> 'required',
-         //'dpp'  => 'required',
-         //'ppn'  => 'required',
-         'stok' => 'required',*/
-    ]);
+        $price = $request->price;
+        $ppn = $price*0.1;
+        $dpp = $price+$ppn;
 
         $barang = new barang;
         $barang->type   = $request->type;
         $barang->nama   = $request->nama;
-        $barang->price  = $request->$price;
+        $barang->price  = $request->price;
         $barang->dpp    = $dpp;
-        $barang->ppn    = $pnn;
+        $barang->ppn    = $ppn;
         $barang->stok   = $request->stok;
         $barang->save();
 
         return redirect('barang')->with('message','Simpan data barang sukses !');
-
-        //
-        $price = 0;
-        $idbarang = Input::get('price');
-        foreach ($price as $price => $price) {
-            $ppn = $value->$price*0.1;
-            $dpp = $value->$price*$ppn;
-        }
     }
+
     public function show($barang)
     {
         //$barang=barang::find($idbarang);
@@ -68,6 +57,10 @@ class barangController extends Controller
     }
     public function update(Request $request, $idbarang)
     {
+        $price = $request->price;
+        $ppn = $price*0.1;
+        $dpp = $price+$ppn;
+
         $this->validate($request, [
          'type' => 'required',
          'nama' => 'required',
@@ -82,8 +75,8 @@ class barangController extends Controller
 		'type'   => $request->type,
 		'nama'   => $request->nama,
 		'price'  => $request->price,
-		//'dpp'    => $request->dpp,
-		//'ppn'    => $request->ppn,
+		'dpp'    => $dpp,
+		'ppn'    => $ppn,
 		'stok'   => $request->stok,
 	];
         $barang->update($paramsUpdate);
