@@ -32,10 +32,10 @@
     <tr>
        <td> {{ $laporanpembelian->idlaporanpembelian}} </td>
        <td> {{ $laporanpembelian->kode}} </td>
-       <td> {{ $laporanpembelian->kode }} </td>
+       <td> {{ $laporanpembelian->noso }} </td>
        <td> {{ $laporanpembelian->tglpesan}} </td>
-       <td> {{ $laporanpembelian->kode}} </td>
-       <td> {{ $laporanpembelian->kode}} </td>
+       <td> {{ $laporanpembelian->nama}} </td>
+       <td> {{ $laporanpembelian->nodo}} </td>
        <td> {{ $laporanpembelian->tglrealisasi}} </td>
        <td> {{ $laporanpembelian->qty}} </td>
        <td> {{ $laporanpembelian->price}} </td>
