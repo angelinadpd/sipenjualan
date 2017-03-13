@@ -6,7 +6,7 @@
 <h1 align="center">Laporan Harian</h1>
 
 <p>Tanggal
-  <input type="date" name="tgl" value=""></p>
+  <input type="date" name="tgl" value="" placeholder="2017/03/13"></p>
 <a href="/indexharian/{date}" class="pull-left btn btn-success" id="cari-laporan-harian" style="margin-right: 5px; margin-bottom: 20px">
   <i class="fa fa-search icon-white"></i>Cari</a><br><br><br>
 
@@ -15,6 +15,7 @@
     <thead>
       <tr>
         <th>ID Laporan</th>
+        <th>Tanggal</th>
     		<th>Kode</th>
     		<th>No. SO</th>
     		<th>Tanggal Pemesanan</th>
@@ -31,12 +32,13 @@
     @foreach($laporanpembelians as $laporanpembelian)
     <tr>
        <td> {{ $laporanpembelian->idlaporanpembelian}} </td>
-       <td> {{ $laporanpembelian->kode}} </td>
+       <td> {{ $laporanpembelian->date}} </td>
        <td> {{ $laporanpembelian->kode }} </td>
-       <td> {{ $laporanpembelian->tglpesan}} </td>
-       <td> {{ $laporanpembelian->kode}} </td>
-       <td> {{ $laporanpembelian->kode}} </td>
-       <td> {{ $laporanpembelian->tglrealisasi}} </td>
+       <td> {{ $laporanpembelian->noso }} </td>
+       <td> {{ $laporanpembelian->tgl}} </td>
+       <td> {{ $laporanpembelian->nama}} </td>
+       <td> {{ $laporanpembelian->nodo}} </td>
+       <td> {{ $laporanpembelian->tgl}} </td>
        <td> {{ $laporanpembelian->qty}} </td>
        <td> {{ $laporanpembelian->price}} </td>
        <td> {{ $laporanpembelian->total}} </td>

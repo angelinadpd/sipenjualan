@@ -23,15 +23,16 @@ class laporanpembelianController extends BaseController
 
     }
 
-    function indexharian($date)
+    function indexharian(Request $request)
     {   
-        //$date->whereDate('created_at', '=', Carbon::today()->toDateString());
-       //$date->whereDate('date', '=', date('Y-m-d'));
+        $date = $request->date;
+        $laporanpembelian = laporanpembelian::whereRaw('date(created_at) = ?', [$date])->get();
 
         $laporanpembelians = DB::table('laporanpembelian')
-         //->leftjoin('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
-         //->leftjoin('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
-         //->select('laporanpembelian.idlaporanpembelian','laporanpembelian.date','pesanbarang.noso','')
+         ->leftjoin('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
+         ->leftjoin('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
+         ->leftjoin('barang', 'laporanpembelian.idbarang','=','barang.idbarang')
+         ->select('laporanpembelian.idlaporanpembelian', 'laporanpembelian.date', 'pesanbarang.kode', 'pesanbarang.noso', 'pesanbarang.tgl', 'barang.nama', 'realisasi.nodo', 'realisasi.tgl', 'realisasi.qty', 'realisasi.price', 'realisasi.total', 'realisasi.status')
          ->paginate(50);
          
         return view('laporanpembelian.indexharian', ['laporanpembelians' => $laporanpembelians]);
