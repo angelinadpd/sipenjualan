@@ -7,7 +7,7 @@
 
 <p>Tanggal
   <input type="date" name="tgl" value=""></p>
-<a href="{{url('/listharian/{laporanpembelian}')}}" class="pull-left btn btn-success" id="cari-laporan-harian" style="margin-right: 5px; margin-bottom: 20px">
+<a href="/indexharian/{date}" class="pull-left btn btn-success" id="cari-laporan-harian" style="margin-right: 5px; margin-bottom: 20px">
   <i class="fa fa-search icon-white"></i>Cari</a><br><br><br>
 
 <div class="table-responsive">
@@ -47,7 +47,7 @@
   <table>
         <tr>
             <td width="600"></td>
-            <td>Padang, </td>
+            <td>Padang,</td>
         </tr>
         <tr height="50">
             <td width="500"></td>

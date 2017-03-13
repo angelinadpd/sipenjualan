@@ -8,47 +8,33 @@ use App\laporanpembelian;
 use App\pesanbarang;
 use App\realisasi;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 
-class laporanpembelianController extends Controller
+class laporanpembelianController extends BaseController
 {
     public function index()
     {
          $laporanpembelians = DB::table('laporanpembelian')
             ->join('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
             ->join('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
-            ->select('*')
+            ->select('laporanpembelian.idlaporanpembelian','pesanbarang.kode','pesanbarang.noso','pesanbarang.tgl','pesanbarang.idbarang','realisasi.nodo','realisasi.tgl','realisasi.qty','realisasi.price','realisasi.total','realisasi.status')
             ->paginate(5);
         return view('laporanpembelian.index', ['laporanpembelians' => $laporanpembelians]);
 
     }
 
-    function indexharian()
+    function indexharian($date)
     {
         //$date->whereDate('created_at', '=', Carbon::today()->toDateString());
+       //$date->whereDate('date', '=', date('Y-m-d'));
 
         $laporanpembelians = DB::table('laporanpembelian')
-            ->join('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
-            ->join('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
-            ->select('*')
-            ->paginate(50);
+         ->join('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
+         ->join('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
+         ->select('laporanpembelian.idlaporanpembelian','pesanbarang.kode','pesanbarang.noso','pesanbarang.tgl','pesanbarang.idbarang','realisasi.nodo','realisasi.tgl','realisasi.qty','realisasi.price','realisasi.total','realisasi.status')
+         ->paginate(50);
          return view('laporanpembelian.indexharian', ['laporanpembelians' => $laporanpembelians]);
-    }
-
-    public function show($laporanpembelian)
-    {
-        $laporanpembelian=laporanpembelian::where('idlaporanpembelian',$laporanpembelian)->first();
-        if(!$laporanpembelian){
-            abort(404); 
-        }
-        return view('laporanpembelian.indexharian')
-                ->with('laporanpembelians',$laporanpembelian);
-    }
-
-    function listharian($laporanpembelian)
-    {
-        $laporanpembelian = App\laporanpembelian::find(1); return $laporanpembelian->created_at->getTimestamp(); 
-        
-        return redirect('laporanpembelian');
+        //return View('laporanpembelian.indexharian',['laporanpembelians' => $laporanpembelians])->with('pesanbarang', pesanbarang::all()) ->with('realisasi', realisasi::all());
     }
 
 }

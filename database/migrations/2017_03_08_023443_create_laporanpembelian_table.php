@@ -14,6 +14,7 @@ class CreateLaporanpembelianTable extends Migration
     {
         Schema::create('laporanpembelian', function (Blueprint $table) {
             $table->increments('idlaporanpembelian');
+            $table->date('date');
             $table->string('kode');
             $table->string('idpesan');//noso
             $table->date('tglpesan');

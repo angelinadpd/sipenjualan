@@ -23,10 +23,6 @@ class pembeliController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-
-            ]);
-
         $pembeli = new pembeli;
         $pembeli->nama = $request->nama;
         $pembeli->alamat = $request->alamat;
