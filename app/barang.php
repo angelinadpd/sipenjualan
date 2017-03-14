@@ -18,5 +18,9 @@ class barang extends Model implements
   use Authenticatable, Authorizable, CanResetPassword;
 
   protected $table = 'barang';
+  public function laporanpembelian()
+    {
+        return $this->belongsTo('App\laporanpembelian');
+    }
   
 }

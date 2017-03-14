@@ -48,6 +48,7 @@ Route::group(['middleware' => ['web']],function () {
 
 	Route::resource('laporanpembelian', 'laporanpembelianController');
 	Route::get('/indexharian/{date}', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@indexharian']);
+	Route::get('/mingguan', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@mingguan']);
 	
 });  
 Route::auth();

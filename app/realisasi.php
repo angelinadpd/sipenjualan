@@ -19,4 +19,10 @@ class realisasi extends Model implements
 
   protected $table = 'realisasi';
   protected $guarded = ['idrealisasi'];
+
+  public function laporanpembelian()
+    {
+        return $this->belongsTo('App\laporanpembelian');
+    }
 }
+

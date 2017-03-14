@@ -20,6 +20,19 @@ class laporanpembelian extends Model implements
   protected $table = 'laporanpembelian';
   protected $guarded = ['idlaporanpembelian'];
   protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+   public function pesanbarang()
+    {
+        return $this->hasMany('App\pesanbarang');
+    }
+     public function realisasi()
+    {
+        return $this->hasMany('App\realisasi');
+    }
+     public function barang()
+    {
+        return $this->hasMany('App\barang');
+    }
 }
 
 

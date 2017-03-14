@@ -14,11 +14,13 @@ class laporanpembelianController extends BaseController
 {
     public function index()
     {
-         $laporanpembelians = DB::table('laporanpembelian')
-            ->join('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
-            ->join('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
-            ->select('laporanpembelian.idlaporanpembelian','pesanbarang.kode','pesanbarang.noso','pesanbarang.tgl','pesanbarang.idbarang','realisasi.nodo','realisasi.tgl','realisasi.qty','realisasi.price','realisasi.total','realisasi.status')
-            ->paginate(5);
+        $laporanpembelians = DB::table('laporanpembelian')
+         ->leftjoin('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
+         ->leftjoin('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
+         ->leftjoin('barang', 'laporanpembelian.idbarang','=','barang.idbarang')
+         ->select('laporanpembelian.idlaporanpembelian', 'laporanpembelian.date', 'pesanbarang.kode', 'pesanbarang.noso', 'pesanbarang.tgl', 'barang.nama', 'realisasi.nodo', 'realisasi.tgl', 'realisasi.qty', 'realisasi.price', 'realisasi.total', 'realisasi.status')
+         ->paginate(50);
+         
         return view('laporanpembelian.index', ['laporanpembelians' => $laporanpembelians]);
 
     }
@@ -37,6 +39,25 @@ class laporanpembelianController extends BaseController
          
         return view('laporanpembelian.indexharian', ['laporanpembelians' => $laporanpembelians]);
         //return View('laporanpembelian.indexharian',['laporanpembelians' => $laporanpembelians])->with('pesanbarang', pesanbarang::all()) ->with('realisasi', realisasi::all());
+    }
+
+    function mingguan(Request $request)
+    {   
+        $date = $request->date;
+        //$laporanpembelians = laporanpembelian::whereBetween('laporanpembelian_from', [$from, $to])->get();
+         $laporanpembelians = laporanpembelian::where(function($q) { 
+            $q->where(DB::raw('created_at BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()')); 
+            $q->where('deleted_at', '=', 0); 
+        });  
+
+        $laporanpembelians = DB::table('laporanpembelian')
+         ->leftjoin('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
+         ->leftjoin('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
+         ->leftjoin('barang', 'laporanpembelian.idbarang','=','barang.idbarang')
+         ->select('laporanpembelian.idlaporanpembelian', 'laporanpembelian.date', 'pesanbarang.kode', 'pesanbarang.noso', 'pesanbarang.tgl', 'barang.nama', 'realisasi.nodo', 'realisasi.tgl', 'realisasi.qty', 'realisasi.price', 'realisasi.total', 'realisasi.status')
+         ->paginate(50);
+        return view('laporanpembelian.mingguan', ['laporanpembelians' => $laporanpembelians]);
+         
     }
 
     public function show($pesanbarang)

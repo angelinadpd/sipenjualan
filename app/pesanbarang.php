@@ -19,4 +19,9 @@ class pesanbarang extends Model implements
 
   protected $table = 'pesanbarang';
   protected $guarded = ['idpesan'];
+
+  public function laporanpembelian()
+    {
+        return $this->belongsTo('App\laporanpembelian');
+    }
 }
