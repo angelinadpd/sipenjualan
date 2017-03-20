@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\barang;
 use App\Http\Controllers\Controllers;
+use Response;
+use Validator;
 
 class barangController extends Controller
 {
@@ -25,6 +27,15 @@ class barangController extends Controller
         $ppn = $price*0.1;
         $dpp = $price+$ppn;
 
+    // $this->validate($request, [
+    //     'type'   => $request->type,
+    //     'nama'   => $request->nama,
+    //     'price'  => $request->price,
+    //     // 'dpp'    => $dpp,
+    //     // 'ppn'    => $ppn,
+    //     'stok'   => $request->stok,
+    //     ]);
+
         $barang = new barang;
         $barang->type   = $request->type;
         $barang->nama   = $request->nama;
@@ -37,16 +48,15 @@ class barangController extends Controller
         return redirect('barang')->with('message','Simpan data barang sukses !');
     }
 
-    public function show($barang)
+    public function show($idbarang)//DELETE
     {
-        //$barang=barang::find($idbarang);
-        $barang=barang::where('idbarang',$barang)->first();
-        if(!$barang){
-            abort(404); 
-        }
+        $barang = barang::where('idbarang', '=',$idbarang);
+        $barang->delete();
+        return redirect('barang');
+
         return view('barang.single')->with('barang',$barang);
     }
-    public function edit($idbarang)
+    public function edit($barang)
     {
         //$barang=barang::find($idbarang);
         $barang=barang::where('idbarang',$barang)->first();

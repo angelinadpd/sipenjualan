@@ -47,7 +47,14 @@ class penjualanController extends Controller
         return redirect('penjualan')->with('message','Simpan data penjualan sukses !');
     }
 
-    public function show($penjualan)
+    public function show($idpenjualan)
+    {
+       $penjualan = penjualan::where('idpenjualan', '=',$idpenjualan);
+        $penjualan->delete();
+        return redirect('penjualan');
+    }
+
+    public function edit($penjualan)
     {
         //$penjualan=penjualan::find($idpenjualan);
         $pembeli= DB::table('pembeli')->get();
@@ -56,21 +63,7 @@ class penjualanController extends Controller
         if(!$penjualan){
             abort(404);
         }
-        return view('penjualan.single',[
-            'penjualan' => $penjualan,
-            'pembeli' => $pembeli,
-            'barang' => $barang
-        ]);
-    }
-
-    public function edit($penjualan)
-    {
-        //$penjualan=penjualan::find($idpenjualan);
-        $penjualan=penjualan::where('penjualan',$penjualan)->first();
-        if(!$penjualan){
-            abort(404);
-        }
-        return view('penjualan.single',[
+        return view('penjualan.edit',[
             'penjualan' => $penjualan,
             'pembeli' => $pembeli,
             'barang' => $barang

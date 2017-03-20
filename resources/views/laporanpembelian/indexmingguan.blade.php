@@ -7,7 +7,7 @@
 
 <p>Tanggal
   <input type="date" name="tgl" value=""></p>
-<a href="/mingguan" class="pull-left btn btn-success" id="cari-laporan-mingguan" style="margin-right: 5px; margin-bottom: 20px">
+<a href="/indexmingguan/{date}" class="pull-left btn btn-success" id="cari-laporan-mingguan" style="margin-right: 5px; margin-bottom: 20px">
   <i class="fa fa-search icon-white"></i>Cari</a><br><br><br>
 
 <div class="table-responsive">
@@ -45,23 +45,6 @@
        <td> {{ $laporanpembelian->status}} </td>
     </tr>        
 @endforeach
-<tbody>
-  <table>
-        <tr>
-            <td width="600"></td>
-            <td>Padang,</td>
-        </tr>
-        <tr height="50">
-            <td width="500"></td>
-            <td></td>
-        </tr>
-        <tr width="700">
-            <td></td>
-            <td>PIMPINAN</td>
-        </tr>
-    </table>
-
-</tbody>
 </table>
           {!! $laporanpembelians->links() !!} 
   </div>  

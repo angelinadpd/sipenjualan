@@ -13,18 +13,10 @@
 
 	<p>Nama Barang
 	<select name="idbarang">
-		<option> --Pilih ID Barang-- </option>
+		<option> --Pilih Nama Barang-- </option>
 		@foreach($barang as $barang)
 			<option value="{{ $pesanbarang->idbarang }}"> {{ $barang->nama }} </option>
 		@endforeach
-	</select>
-
-	<p>Status
-	<select name="status" value="{{ $pesanbarang->status }}">
-		<option> --Pilih status-- </option>
-		<option> Pesan </option>
-		<option> Masuk </option>
-		<option> Batal </option>
 	</select>
 	</p>
 

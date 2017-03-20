@@ -15,8 +15,7 @@
     		<th>Nama Pembeli</th>
     		<th>Alamat</th>
     		<th>Telp</th>
-        <th>Edit</th>
-        <th>Hapus</th>
+        <th>Action</th>
     	</tr>
     </thead>
 
@@ -27,14 +26,8 @@
        <td> {{ $pembeli->alamat}} </td>
        <td> {{ $pembeli->telp}} </td>
        <td>
-         		<a href="/pembeli/{{$pembeli->idpembeli}}" class="btn btn-xs btn-success"><i class="fa fa-pencil-square-o"></i> </a>
-       </td>
-       <td>
-            <form class="" action="/pembeli/{{$pembeli->idpembeli}}" name="name" method="post">
-              <button class="btn btn-xs btn-warning"><i class="fa fa-trash"></i></button>
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="hidden" name="_method" value="delete">
-            </form>
+         		<a href="/pembeli/{{$pembeli->idpembeli}}/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>&nbsp;Edit</a>
+              <a href="/pembeli/{{$pembeli->idpembeli}}" class="btn btn-danger" id="alertHapus"><i class="glyphicon glyphicon-trash"></i>&nbsp;Hapus</a>
         </td>
     </tr>        
 @endforeach

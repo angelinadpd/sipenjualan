@@ -15,21 +15,12 @@
 
 	<p>Nama Barang
 	<select name="idbarang">
-		<option> --Pilih ID Barang-- </option>
+		<option> --Pilih Nama Barang-- </option>
 		@foreach($barang as $barang)
 			<option value="{{ $barang->idbarang }}"> {{ $barang->nama }} </option>
 		@endforeach
 	</select>
     {{ ($errors->has('idbarang')) ? $errors->first('idbarang') : '' }}</p><br>
-
-	<p>Status
-	<select name="status">
-		<option> --Pilih status-- </option>
-		<option> Pesan </option>
-		<option> Masuk </option>
-		<option> Batal </option>
-	</select>
-	{{ ($errors->has('status')) ? $errors->first('status') : '' }}</p><br>
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<button class="btn btn-success" type="submit" name="submit">Post</button>

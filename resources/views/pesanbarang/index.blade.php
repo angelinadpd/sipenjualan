@@ -17,8 +17,7 @@
     		<th>Tanggal</th>
         <th>Nama Barang</th>
         <th>Status</th>
-        <th>Edit</th>
-        <th>Hapus</th>
+        <th>Action</th>
     	</tr>
     </thead>
 
@@ -31,14 +30,8 @@
        <td> {{ $pesanbarang->nama}} </td>
        <td> {{ $pesanbarang->status}} </td>
        <td>
-         		<a href="/pesanbarang/{{$pesanbarang->idpesan}}" class="btn btn-xs btn-success"><i class="fa fa-pencil-square-o"></i> </a>
-       </td>
-       <td>
-            <form class="" action="/pesanbarang/{{$pesanbarang->idpesan}}" name="name" method="post">
-              <button class="btn btn-xs btn-warning"><i class="fa fa-trash"></i></button>
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="hidden" name="_method" value="delete">
-            </form>
+         		<a href="/pesanbarang/{{$pesanbarang->idpesan}}/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>&nbsp;Edit</a>
+            <a href="/pesanbarang/{{$pesanbarang->idpesan}}" class="btn btn-danger" id="alertHapus"><i class="glyphicon glyphicon-trash"></i>&nbsp;Hapus</a>
         </td>
       </tr>
 

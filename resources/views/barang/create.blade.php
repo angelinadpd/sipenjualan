@@ -7,15 +7,15 @@
 <form class="" action="/barang" method="post">
     <p>Type Barang
 	<input type="text" name="type" value="">
-	{{ ($errors->has('type')) ? $errors->first('type') : '' }}</p><br>
+	{{ ($errors->has('type'))? $errors->first('type') : '' }}</p><br>
 
 	<p>Nama Barang
 	<input type="text" name="nama" value="">
-	{{ ($errors->has('nama')) ? $errors->first('nama') : '' }}</p><br>
+	{{ ($errors->has('nama'))? $errors->first('nama') : '' }}</p><br>
 
 	<p>Price
 	<input type="text" name="price" value="">
-	{{ ($errors->has('price')) ? $errors->first('price') : '' }}</p><br>
+	{{ ($errors->has('price'))? $errors->first('price') : '' }}</p><br>
 
 	<!--<p>DPP
 	<input type="text" name="dpp" value="">
@@ -27,7 +27,7 @@
 
 	<p>Stok
 	<input type="text" name="stok" value="">
-	{{ ($errors->has('stok')) ? $errors->first('stok') : '' }}</p><br><br>
+	{{ ($errors->has('stok'))? $errors->first('stok') : '' }}</p><br><br>
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<button class="btn btn-success" type="submit" name="submit">Post</button>

@@ -20,8 +20,10 @@ class realisasiController extends Controller
     }
 
     public function create()
-    {
-       $pesanbarang= DB::table('pesanbarang')->get();
+    {    
+        $pesanbarang= DB::table('pesanbarang')->get();
+        // DB::table('pesanbarang') ->where('status', pesan) ->update realisasi(['status' => masuk]); 
+
         return view('realisasi.create',['pesanbarang'=>$pesanbarang]);
     }
 
@@ -47,22 +49,21 @@ class realisasiController extends Controller
 
     public function show($realisasi)
     {
-        //$realisasi=realisasi::find($idrealisasi);
-        $pesanbarang= DB::table('pesanbarang')->get();
-        $realisasi=realisasi::where('idrealisasi',$realisasi)->first();
-        if(!$realisasi){
-            abort(404);
-        }
-        return view('realisasi.single',[
-            'pesanbarang' => $pesanbarang,
-            'realisasi' => $realisasi
-        ]);
+        $realisasi = realisasi::where('idrealisasi', '=',$idrealisasi);
+        $realisasi->delete();
+        return redirect('realisasi');
+
+        // return view('realisasi.single',[
+        //     'pesanbarang' => $pesanbarang,
+        //     'realisasi' => $realisasi
+        // ]);
     }
 
     public function edit($realisasi)
     {
         //$realisasi=realisasi::find($idrealisasi);
-        $realisasi=realisasi::where('realisasi',$realisasi)->first();
+        $pesanbarang= DB::table('pesanbarang')->get();
+        $realisasi=realisasi::where('idrealisasi',$realisasi)->first();
         if(!$realisasi){
             abort(404);
         }
@@ -83,8 +84,7 @@ class realisasiController extends Controller
             'tgl'        => 'required',
             'price'      => 'required',
             'qty'        => 'required',
-            //'total'      => 'required',
-            'status' => 'required',
+            'status'     => 'required',
             ]);
 
         $realisasi = realisasi::where('idrealisasi', '=',$idrealisasi);
@@ -95,7 +95,7 @@ class realisasiController extends Controller
         'price'     => $request->price,
         'qty'       => $request->qty,
         'total'     => $total,
-        'status'=> $request->status,
+        'status'    => $request->status,
     ];
         $realisasi->update($paramsUpdate);
 

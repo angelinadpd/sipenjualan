@@ -17,20 +17,14 @@ Route::get('/', function () {
 Route::get('/default', function () {
     return view('layout.default');
 });
-
-//LAPORAN
-Route::get('/laporanpembelian', function () {
-  return view('laporanpembelian.index');
-});
-
-
-
-
+// Route::get('/deletebarang', function() {
+// 	return view('barang.deletebarang');
+// });
 
 Route::group(['middleware' => ['web']],function () {
 	Route::resource('barang', 'barangController');
 	Route::get('barang', ['as' => 'barang', 'uses' => 'barangController@index']);
-
+	
 	Route::resource('pembeli', 'pembeliController');
 	Route::get('pembeli', ['as' => 'pembeli', 'uses' => 'pembeliController@index']);
 
@@ -46,11 +40,24 @@ Route::group(['middleware' => ['web']],function () {
 	Route::resource('penjualan', 'penjualanController');
 	Route::get('penjualan', ['as' => 'penjualan', 'uses' => 'penjualanController@index']);
 
+	//laporan pembelian
 	Route::resource('laporanpembelian', 'laporanpembelianController');
 	Route::get('/indexharian/{date}', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@indexharian']);
-	Route::get('/mingguan', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@mingguan']);
-	
-});  
+	Route::get('/indexmingguan/{date}', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@indexmingguan']);
+	Route::get('/indexbulanan/{date}', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@indexbulanan']);
+	Route::get('/indextahunan/{date}', ['as' => 'laporanpembelian', 'uses' => 'laporanpembelianController@indextahunan']);
+	/*Route::get('/indexpembelian', function() {
+		return View::make('laporanpembelian.index');
+	});*/
+
+	//laporan penjualan
+	Route::resource('laporanpenjualan', 'laporanpenjualanController');
+	Route::get('/harian', ['as' => 'laporanpenjualan', 'uses' => 'laporanpenjualanController@harian']);
+	Route::get('/mingguan', ['as' => 'laporanpenjualan', 'uses' => 'laporanpenjualanController@mingguan']);
+	Route::get('/bulanan', ['as' => 'laporanpenjualan', 'uses' => 'laporanpenjualanController@bulanan']);
+	Route::get('/tahunan', ['as' => 'laporanpenjualan', 'uses' => 'laporanpenjualanController@tahunan']);
+});
+	  
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

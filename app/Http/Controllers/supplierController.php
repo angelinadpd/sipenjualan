@@ -36,20 +36,18 @@ class supplierController extends Controller
         return redirect('supplier')->with('message','Simpa data supplier sukses !');
     }
 
-    public function show($supplier)
+    public function show($idsupplier)
     {
-        //$supplier=supplier::find($idsupplier);
-        $supplier=supplier::where('idsupplier',$supplier)->first();
-        if(!$supplier){
-            abort(404);
-        }
+        $supplier = supplier::where('idsupplier', '=',$idsupplier);
+        $supplier->delete();
+        return redirect('supplier');
+
         return view('supplier.single')->with('supplier',$supplier);
     }
 
     public function edit($supplier)
     {
-        //$supplier=supplier::find($idsupplier);
-        $supplier=supplier::where('supplier',$supplier)->first();
+        $supplier=supplier::where('idsupplier',$supplier)->first();
         if(!$supplier){
             abort(404);
         }

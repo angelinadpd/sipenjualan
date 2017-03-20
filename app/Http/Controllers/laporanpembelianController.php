@@ -28,7 +28,7 @@ class laporanpembelianController extends BaseController
     function indexharian(Request $request)
     {   
         $date = $request->date;
-        $laporanpembelian = laporanpembelian::whereRaw('date(created_at) = ?', [$date])->get();
+        $laporanpembelians = laporanpembelian::whereRaw('date(created_at) = ?', [$date])->get();
 
         $laporanpembelians = DB::table('laporanpembelian')
          ->leftjoin('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
@@ -41,7 +41,7 @@ class laporanpembelianController extends BaseController
         //return View('laporanpembelian.indexharian',['laporanpembelians' => $laporanpembelians])->with('pesanbarang', pesanbarang::all()) ->with('realisasi', realisasi::all());
     }
 
-    function mingguan(Request $request)
+    function indexmingguan(Request $request)
     {   
         $date = $request->date;
         //$laporanpembelians = laporanpembelian::whereBetween('laporanpembelian_from', [$from, $to])->get();
@@ -56,21 +56,32 @@ class laporanpembelianController extends BaseController
          ->leftjoin('barang', 'laporanpembelian.idbarang','=','barang.idbarang')
          ->select('laporanpembelian.idlaporanpembelian', 'laporanpembelian.date', 'pesanbarang.kode', 'pesanbarang.noso', 'pesanbarang.tgl', 'barang.nama', 'realisasi.nodo', 'realisasi.tgl', 'realisasi.qty', 'realisasi.price', 'realisasi.total', 'realisasi.status')
          ->paginate(50);
-        return view('laporanpembelian.mingguan', ['laporanpembelians' => $laporanpembelians]);
+        return view('laporanpembelian.indexmingguan', ['laporanpembelians' => $laporanpembelians]);
          
     }
 
-    public function show($pesanbarang)
-    {
-        $laporanpembelian= DB::table('laporanpembelian')->get();
-        $laporanpembelian=laporanpembelian::where('idlaporanpembelian',$laporanpembelian)->first();
-        if(!$laporanpembelian){
-            abort(404);
-        }
-        return view('laporanpembelian.single',[
-            'pesanbarang' => $pesanbarang,
-            'realisasi' => $realisasi
-        ]);
+    function indexbulanan(Request $request)
+    {   
+        $laporanpembelians = DB::table('laporanpembelian')
+         ->leftjoin('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
+         ->leftjoin('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
+         ->leftjoin('barang', 'laporanpembelian.idbarang','=','barang.idbarang')
+         ->select('laporanpembelian.idlaporanpembelian', 'laporanpembelian.date', 'pesanbarang.kode', 'pesanbarang.noso', 'pesanbarang.tgl', 'barang.nama', 'realisasi.nodo', 'realisasi.tgl', 'realisasi.qty', 'realisasi.price', 'realisasi.total', 'realisasi.status')
+         ->paginate(50);
+        return view('laporanpembelian.indexbulanan', ['laporanpembelians' => $laporanpembelians]);
+         
     }
 
+    function indextahunan(Request $request)
+    {   
+        $laporanpembelians = DB::table('laporanpembelian')
+         ->leftjoin('pesanbarang', 'laporanpembelian.idpesan','=','pesanbarang.idpesan')
+         ->leftjoin('realisasi', 'laporanpembelian.idrealisasi','=','realisasi.idrealisasi')
+         ->leftjoin('barang', 'laporanpembelian.idbarang','=','barang.idbarang')
+         ->select('laporanpembelian.idlaporanpembelian', 'laporanpembelian.date', 'pesanbarang.kode', 'pesanbarang.noso', 'pesanbarang.tgl', 'barang.nama', 'realisasi.nodo', 'realisasi.tgl', 'realisasi.qty', 'realisasi.price', 'realisasi.total', 'realisasi.status')
+         ->paginate(50);
+        return view('laporanpembelian.indextahunan', ['laporanpembelians' => $laporanpembelians]);
+         
+    }
 }
+

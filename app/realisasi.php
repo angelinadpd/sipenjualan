@@ -24,5 +24,9 @@ class realisasi extends Model implements
     {
         return $this->belongsTo('App\laporanpembelian');
     }
+
+  public function pesanbarang(){
+    return $this->hasOne('App\pesanbarang');
+  }
 }
 

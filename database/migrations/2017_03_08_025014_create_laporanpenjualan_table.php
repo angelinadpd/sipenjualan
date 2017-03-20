@@ -14,8 +14,9 @@ class CreateLaporanpenjualanTable extends Migration
     {
          Schema::create('laporanpenjualan', function (Blueprint $table) {
             $table->increments('idlaporanpenjualan');
-            $table->date('tgl');
-            $table->string('nota');
+            $table->date('date');//tgl search
+            $table->string('idpenjualan');//nota
+            $table->date('tgl');//tglpenjualan
             $table->integer('idpembeli');
             $table->integer('qty');
             $table->integer('idbarang');

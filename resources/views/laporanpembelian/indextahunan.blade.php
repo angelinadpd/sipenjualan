@@ -3,11 +3,11 @@
 {{ Session::get('message') }}
 
 <div class="row">
-<h1 align="center">Laporan Harian</h1>
+<h1 align="center">Laporan Tahunan</h1>
 
 <p>Tanggal
-  <input type="date" name="date" value=""></p>
-<a href="/indexharian/{date}" class="pull-left btn btn-success" id="cari-laporan-harian" style="margin-right: 5px; margin-bottom: 20px">
+  <input type="date" name="tgl" value=""></p>
+<a href="/indextahunan/{date}" class="pull-left btn btn-success" id="cari-laporan-tahunan" style="margin-right: 5px; margin-bottom: 20px">
   <i class="fa fa-search icon-white"></i>Cari</a><br><br><br>
 
 <div class="table-responsive">

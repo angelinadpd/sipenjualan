@@ -171,12 +171,37 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('vendors/js/bootstrap.min.js') }}"></script>
+    <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
-    <!-- Morris Charts JavaScript -->
+
+    <!-- Ajax -->
+  <!--   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+
+    
+    <!-- Morris Charts JavaScript -->  
     <script src="{{ asset('vendors/js/plugins/morris/raphael.min.js') }}"></script>
     <script src="{{ asset('vendors/js/plugins/morris/morris.min.js') }}"></script>
     <script src="{{ asset('vendors/js/plugins/morris/morris-data.js') }}"></script>
+    <script src="{{ asset('vendors/js/bootbox.min.js') }}"></script>
 
+<!-- MODAL UNTUK MESSAGE CONFIRMATION -->
+<script>
+    $(document).ready(function () {
+        $(tabelbarang).dataTable();
+    });
+</script>
+<script>
+    $(document).on("click", "#alertHapus", function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+        bootbox.confirm("Anda yakin ingin menghapus data ini ?", function(confirmed){
+            if (confirmed) {
+                window.location.href = link; 
+            };
+        });
+    });
+</script>
 </body>
 
 </html>

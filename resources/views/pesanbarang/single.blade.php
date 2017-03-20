@@ -11,20 +11,12 @@
 	<p>Tanggal
 	<input type="date" name="tgl" value="{{ $pesanbarang->tgl }}"></p><br>
 
-	<p>ID Barang
+	<p>Nama Barang
 	<select name="idbarang">
-		<option> --Pilih ID Barang-- </option>
+		<option> --Pilih Nama Barang-- </option>
 		@foreach($barang as $barang)
-			<option value="{{ $barang->idbarang }}"> {{ $barang->nama }} </option>
+			<option value="{{ $pesanbarang->idbarang }}"> {{ $barang->nama }} </option>
 		@endforeach
-	</select>
-
-	<p>Status
-	<select name="status" value="{{ $pesanbarang->status }}">
-		<option> --Pilih status-- </option>
-		<option> Pesan </option>
-		<option> Masuk </option>
-		<option> Batal </option>
 	</select>
 	</p>
 

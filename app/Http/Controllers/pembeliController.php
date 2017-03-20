@@ -32,26 +32,22 @@ class pembeliController extends Controller
         return redirect('pembeli')->with('message','Simpan data pembeli sukses !');
     }
 
-    public function show($pembeli)
+    public function show($idpembeli)
     {
-        //$pembeli=pembeli::find($idpembeli);
-        $pembeli=pembeli::where('idpembeli',$pembeli)->first();
-        if(!$pembeli){
-            abort(404);
-        }
+        $pembeli = pembeli::where('idpembeli', '=',$idpembeli);
+        $pembeli->delete();
+        return redirect('pembeli');
         return view('pembeli.single')->with('pembeli',$pembeli);
     }
 
     public function edit($pembeli)
     {
-        //$pembeli=pembeli::find($idpembeli);
-        $pembeli=pembeli::where('pembeli',$pembeli)->first();
+        $pembeli=pembeli::where('idpembeli',$pembeli)->first();
         if(!$pembeli){
             abort(404);
         }
         return view('pembeli.edit')->with('pembeli',$pembeli);
     }
-
     public function update(Request $request, $idpembeli)
     {
          $this->validate($request, [
@@ -70,6 +66,7 @@ class pembeliController extends Controller
         $pembeli->update($paramsUpdate);
 
         return redirect('pembeli')->with('message','Update data pembeli sukses !');
+
     }
 
     public function destroy($idpembeli)

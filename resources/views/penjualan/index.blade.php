@@ -18,8 +18,7 @@
         <th>Qty</th>
         <th>Amount</th>
         <th>Total</th>
-        <th>Edit</th>
-        <td>Hapus</td>
+        <th>Action</th>
     	</tr>
     </thead>
 
@@ -34,14 +33,8 @@
        <td> {{ $penjualan->amount}} </td>
        <td> {{ $penjualan->total}} </td>
        <td>
-         		<a href="/penjualan/{{$penjualan->idpenjualan}}" class="btn btn-xs btn-success"><i class="fa fa-pencil-square-o"></i> </a>
-       </td>
-       <td>
-            <form class="" action="/penjualan/{{$penjualan->idpenjualan}}" name="name" method="post">
-              <button class="btn btn-xs btn-warning"><i class="fa fa-trash"></i></button>
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="hidden" name="_method" value="delete">
-            </form>
+         		<a href="/penjualan/{{$penjualan->idpenjualan}}/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>&nbsp;Edit</a>
+            <a href="/penjualan/{{$penjualan->idpenjualan}}" class="btn btn-danger" id="alertHapus"><i class="glyphicon glyphicon-trash"></i>&nbsp;Hapus</a>
         </td>
       </tr>
 @endforeach
